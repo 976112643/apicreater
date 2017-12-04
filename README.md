@@ -2,7 +2,7 @@
 接口生成器. 根据接口文档自动生成接口及接口方法定义
 
 代码结构说明:
-
+```
 com
     └─quanwe
         │  TestApiCreater.java
@@ -27,6 +27,7 @@ com
         └─utils								工具类
                 FileUtils.java
                 StringUtils.java
+```
                 
 
 
