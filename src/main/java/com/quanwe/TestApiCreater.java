@@ -18,8 +18,8 @@ public class TestApiCreater {
         String FILE_SUFFIX=".java";
         String API_CONFIG_CLASS_NAME = "BaseQuestConfig";
         String API_METHOD_CLASS_NAME = "BaseQuestStart";
-        String apiUrl = "http://test.cnsunrun.com/ApiManager/index.php?act=api&tag=51#info_api_934b535800b1cba8f96a5d72f72f1611";
-        String baseUrl = "http://test.cnsunrun.com/ApiManager";
+        String apiUrl = "http://apimanager.quanwe.top/index.php?act=api&tag=7";
+        String baseUrl = "http://apimanager.quanwe.top";
         //创建接口生成器,配置接口解析器
         ApiCreater apiCreater=new ApiCreater(new AmParser(apiUrl,baseUrl));
         //添加类文件生成器
