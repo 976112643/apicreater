@@ -4,6 +4,7 @@ import com.quanwe.bean.ApiInfoBean;
 import com.quanwe.intf.IApiParser;
 import com.quanwe.intf.Setting;
 
+import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -15,6 +16,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+
+import static com.quanwe.utils.HttpsUtils.trustEveryone;
 
 /**
  * 基于ApiManager 的解析器
@@ -34,7 +37,19 @@ public class AmParser implements IApiParser {
     public List<ApiInfoBean> parser() {
         List<ApiInfoBean> apiInfos = new ArrayList<>();
         try {
-            Document jsoup = Jsoup.parse(new URL(apiUrl), 5000);
+//            trustEveryone();
+//            Connection conn = HttpConnection2.connect(url);
+//            conn.header("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8");
+//            conn.header("Accept-Encoding", "gzip, deflate, br");
+//            conn.header("Accept-Language", "zh-CN,zh;q=0.9");
+//            conn.header("Cache-Control", "max-age=0");
+//            conn.header("Connection", "keep-alive");
+//            conn.header("Host", "blog.maxleap.cn");
+//            conn.header("Upgrade-Insecure-Requests", "1");
+//            conn.header("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36");
+            Document jsoup= Jsoup.connect(apiUrl).timeout(5000).userAgent("Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36")
+                    .validateTLSCertificates(false).get();
+//            Document jsoup = Jsoup.parse(new URL(apiUrl), 5000);
 //				Elements doc=jsoup.select("div.de-desc");
             Elements doc = jsoup.select("ul.list-unstyled > li");
             jsoup.setBaseUri(apiBaseUrl);

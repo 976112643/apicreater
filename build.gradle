@@ -1,9 +1,14 @@
 apply plugin: 'java'
-
+allprojects {
+    repositories {
+        maven { url "https://jitpack.io" }
+        jcenter()
+        maven { url "https://maven.google.com" }
+        mavenCentral()
+    }
+}
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile files('libs/jsoup-1.7.2.jar')
+    compile 'org.jsoup:jsoup:1.11.3'
 }
 
-sourceCompatibility = "1.7"
-targetCompatibility = "1.7"
